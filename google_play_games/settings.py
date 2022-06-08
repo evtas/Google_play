@@ -50,10 +50,9 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
    # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
-   'google_play_games.middlewares.ProxyMiddleware': 543,
-}
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -89,5 +88,3 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-PROXIES = ['https://212.81.47.11:443', 'https://45.80.190.11:443', 'https://45.87.164.13:443', 
-           'https://45.142.165.151:443', 'https://5.181.21.18:443', 'https://193.111.90.11:443']

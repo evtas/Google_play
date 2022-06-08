@@ -10,14 +10,7 @@ count = 0
 class GamesCrawlerSpider(scrapy.Spider):
     name = 'games_crawler'
     allowed_domains = ['play.google.com']
-    # start_urls = ['https://play.google.com/store/games']
-
-    def start_requests(self):
-        url = 'https://play.google.com/store/games'
-        # url = 'https://ip.chinaz.com/getip.aspx'
-
-        for i in range(4):
-            yield scrapy.Request(url=url, callback=self.parse, dont_filter=True)
+    start_urls = ['https://play.google.com/store/games']
 
     # 爬取详情页的代码demo
     def parse(self, response):
