@@ -1,23 +1,30 @@
+from curses import meta
+from gc import callbacks
+from urllib.request import Request
 import scrapy
 import re
 from google_play_games.items import GooglePlayGamesItem
 import logging
 from .utils import xstr
+from google_play_games.settings import REGION
 
 BASE_URL = "https://play.google.com"
-count = 0
 
 class GamesCrawlerSpider(scrapy.Spider):
     name = 'games_crawler'
     allowed_domains = ['play.google.com']
-    start_urls = ['https://play.google.com/store/games']
+
+    def start_requests(self):
+        urls = ['https://play.google.com/store/games?gl=' + country for country in REGION]
+        for url in urls:
+            yield scrapy.Request(url=url, callback=self.parse, meta={'gl': url[-2:]})
 
     # 爬取详情页的代码demo
     def parse(self, response):
         genre_urls = []
         for each in response.xpath("//div[@class='ULeU3b']/a/@href"):
-            print(each.extract())
-            genre_urls.append(BASE_URL + each.extract())
+            genre_urls.append(BASE_URL + each.extract() + "&gl=" + response.meta['gl'])
+            # genre_urls.append(BASE_URL + each.extract())
 
         for genre_url in genre_urls:
             yield scrapy.Request(genre_url, self.parse_genre)
@@ -32,6 +39,9 @@ class GamesCrawlerSpider(scrapy.Spider):
                 yield scrapy.Request(detail_url, self.parse_detail)
 
     def parse_detail(self, response):
+        global count 
+        count += 1
+
         item = GooglePlayGamesItem()
 
         name = response.xpath("//h1[@itemprop='name']/span/text()").extract_first()
@@ -52,8 +62,5 @@ class GamesCrawlerSpider(scrapy.Spider):
         item['update_time'] = xstr(update_time)
         item['genre'] = xstr(genre)
 
-        return item
-        # print(name, author, star_rating, download_times, content_rating, introduction, update_time, genre)
-        # with open("games.txt", "a") as f:
-        #     s = name + ' ' +author + ' ' + star_rating + ' '  + download_times + ' '  + content_rating + ' '  + introduction + ' '  + update_time + ' '  + genre
-        #     f.writelines(s + "\n")        
+        # print(name)
+        return item      
