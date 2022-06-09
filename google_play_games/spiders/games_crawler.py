@@ -21,6 +21,7 @@ class GamesCrawlerSpider(scrapy.Spider):
 
     # 爬取详情页的代码demo
     def parse(self, response):
+        print(response.text)
         genre_urls = []
         for each in response.xpath("//div[@class='ULeU3b']/a/@href"):
             genre_urls.append(BASE_URL + each.extract() + "&gl=" + response.meta['gl'])
@@ -39,8 +40,7 @@ class GamesCrawlerSpider(scrapy.Spider):
                 yield scrapy.Request(detail_url, self.parse_detail)
 
     def parse_detail(self, response):
-        global count 
-        count += 1
+        print(response.text)
 
         item = GooglePlayGamesItem()
 
