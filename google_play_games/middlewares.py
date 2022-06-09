@@ -9,6 +9,10 @@ from scrapy import signals
 from itemadapter import is_item, ItemAdapter
 from google_play_games import settings
 import random
+from selenium import webdriver
+import time
+from scrapy.http import HtmlResponse
+
 
 
 class GooglePlayGamesSpiderMiddleware:
@@ -104,3 +108,26 @@ class GooglePlayGamesDownloaderMiddleware:
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
 
+
+class selMiddleware(object):
+    def __init__(self):
+        self.driver = webdriver.Chrome(executable_path='/Users/Ben/chromedriver')
+
+    def process_request(self, request, spider):
+        if not "id=" in request.url:
+            self.driver.get(request.url)
+            time.sleep(1)
+
+            js = "document.documentElement.scrollTop=20000"
+            for i in range(7):
+                self.driver.execute_script(js)
+                time.sleep(2)
+
+            body = self.driver.page_source
+
+            print("访问" + request.url)
+
+            return HtmlResponse(self.driver.current_url, body=body, encoding='utf-8', request=request)
+        
+        else:
+            return HtmlResponse(url=request.url, request=request,encoding='utf-8')
