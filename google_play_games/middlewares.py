@@ -10,8 +10,11 @@ from itemadapter import is_item, ItemAdapter
 from google_play_games import settings
 import random
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+
 import time
 from scrapy.http import HtmlResponse
+
 
 
 
@@ -112,6 +115,8 @@ class GooglePlayGamesDownloaderMiddleware:
 class selMiddleware(object):
     def __init__(self):
         self.driver = webdriver.Chrome(executable_path='/Users/Ben/chromedriver')
+        self.driver.maximize_window()
+
 
     def process_request(self, request, spider):
         if not "id=" in request.url:
@@ -121,13 +126,30 @@ class selMiddleware(object):
             js = "document.documentElement.scrollTop=20000"
             for i in range(7):
                 self.driver.execute_script(js)
-                time.sleep(2)
+                time.sleep(1)
+
+            scroll_right_items = self.driver.find_elements_by_xpath("//div[@class='bewvKb']")
+            # button = self.driver.find_elements_by_xpath("//div[@class='bewvKb']/div[2]")
+            print(len(scroll_right_items))
+
+            for i in range(len(scroll_right_items)):
+                print(i)
+                if scroll_right_items[i].is_displayed():
+                    ActionChains(self.driver).move_to_element(scroll_right_items[i]).perform()
+                    time.sleep(0.2)
+
+                    while scroll_right_items[i].find_element_by_xpath("//*[contains(text(), 'chevron_right')]"):
+                        button = scroll_right_items[i].find_element_by_xpath("//*[contains(text(), 'chevron_right')]")
+                        # print(button)
+                        if button.is_displayed():
+                            button.click()
+                        else:
+                            break
+                        time.sleep(0.2)
+            
 
             body = self.driver.page_source
 
             print("访问" + request.url)
 
             return HtmlResponse(self.driver.current_url, body=body, encoding='utf-8', request=request)
-        
-        else:
-            return HtmlResponse(url=request.url, request=request,encoding='utf-8')
