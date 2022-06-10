@@ -68,7 +68,7 @@ DOWNLOADER_MIDDLEWARES = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
-   # 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
+   'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,8 +92,8 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# REGION= ['JP', 'US', 'HK', 'DE', 'EE']
-REGION = ['JP']
+REGION= ['JP', 'US', 'HK', 'DE', 'EE']
+# REGION = ['JP']
 
 LOG_FILE = 'google_play.log'
 LOG_LEVEL = 'INFO'

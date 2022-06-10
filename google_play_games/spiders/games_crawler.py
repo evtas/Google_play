@@ -21,8 +21,6 @@ class GamesCrawlerSpider(scrapy.Spider):
 
     # 爬取详情页的代码demo
     def parse(self, response):
-        with open(str(response.url)[-5:]+'.html', 'w') as f:
-            f.write(response.text)
         genre_urls = []
         for each in response.xpath("//div[@class='ULeU3b']/a/@href"):
             genre_urls.append(BASE_URL + each.extract() + "&gl=" + response.meta['gl'])

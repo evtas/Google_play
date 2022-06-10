@@ -2204,3 +2204,236 @@ Stacktrace:
 2022-06-10 12:12:43 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1089800a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/95d1b798866a93ebb54884562a7db64a/element/89265bc7-316b-451a-9022-e1c5cea6674e/element
 2022-06-10 12:12:43 [scrapy.core.engine] INFO: Closing spider (shutdown)
 2022-06-10 12:12:43 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2022-06-10 17:27:56 [scrapy.utils.log] INFO: Scrapy 2.6.1 started (bot: google_play_games)
+2022-06-10 17:27:56 [scrapy.utils.log] INFO: Versions: lxml 4.9.0.0, libxml2 2.9.4, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 22.4.0, Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23) - [Clang 13.0.0 (clang-1300.0.29.30)], pyOpenSSL 22.0.0 (OpenSSL 3.0.3 3 May 2022), cryptography 37.0.2, Platform macOS-12.2-arm64-arm-64bit
+2022-06-10 17:27:56 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'google_play_games',
+ 'LOG_FILE': 'google_play.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'google_play_games.spiders',
+ 'SPIDER_MODULES': ['google_play_games.spiders']}
+2022-06-10 17:27:56 [scrapy.extensions.telnet] INFO: Telnet Password: b641aa4e0ec9e879
+2022-06-10 17:27:56 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2022-06-10 17:27:57 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'google_play_games.middlewares.selMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2022-06-10 17:27:57 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2022-06-10 17:27:57 [scrapy.middleware] INFO: Enabled item pipelines:
+['google_play_games.pipelines.GooglePlayGamesPipeline']
+2022-06-10 17:27:57 [scrapy.core.engine] INFO: Spider opened
+2022-06-10 17:27:57 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2022-06-10 17:27:57 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2022-06-10 17:28:14 [scrapy.core.scraper] ERROR: Error downloading <GET https://play.google.com/store/games?gl=JP>
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/twisted/internet/defer.py", line 1660, in _inlineCallbacks
+    result = current_context.run(gen.send, result)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scrapy/core/downloader/middleware.py", line 41, in process_request
+    response = yield deferred_from_coro(method(request=request, spider=spider))
+  File "/Users/ben/google_play_games/google_play_games/middlewares.py", line 128, in process_request
+    self.driver.execute_script(js)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 884, in execute_script
+    return self.execute(command, {
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 430, in execute
+    self.error_handler.check_response(response)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py", line 247, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=102.0.5005.61)
+Stacktrace:
+0   chromedriver                        0x0000000102491170 chromedriver + 4477296
+1   chromedriver                        0x0000000102428c18 chromedriver + 4049944
+2   chromedriver                        0x000000010207ad40 chromedriver + 191808
+3   chromedriver                        0x000000010205df4c chromedriver + 73548
+4   chromedriver                        0x00000001020c4b84 chromedriver + 494468
+5   chromedriver                        0x00000001020d2030 chromedriver + 548912
+6   chromedriver                        0x000000010209ef58 chromedriver + 339800
+7   chromedriver                        0x0000000102466bd4 chromedriver + 4303828
+8   chromedriver                        0x000000010246b094 chromedriver + 4321428
+9   chromedriver                        0x000000010246f600 chromedriver + 4339200
+10  chromedriver                        0x000000010246baf4 chromedriver + 4324084
+11  chromedriver                        0x000000010244a52c chromedriver + 4187436
+12  chromedriver                        0x0000000102483488 chromedriver + 4420744
+13  chromedriver                        0x00000001024835ec chromedriver + 4421100
+14  chromedriver                        0x000000010249792c chromedriver + 4503852
+15  libsystem_pthread.dylib             0x00000001a8ae5240 _pthread_start + 148
+16  libsystem_pthread.dylib             0x00000001a8ae0024 thread_start + 8
+
+2022-06-10 17:28:14 [scrapy.core.engine] INFO: Closing spider (finished)
+2022-06-10 17:28:14 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/selenium.common.exceptions.NoSuchWindowException': 1,
+ 'elapsed_time_seconds': 16.714993,
+ 'finish_reason': 'finished',
+ 'finish_time': datetime.datetime(2022, 6, 10, 9, 28, 14, 547572),
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 10,
+ 'memusage/max': 72450048,
+ 'memusage/startup': 72450048,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2022, 6, 10, 9, 27, 57, 832579)}
+2022-06-10 17:28:14 [scrapy.core.engine] INFO: Spider closed (finished)
+2022-06-10 17:28:46 [scrapy.utils.log] INFO: Scrapy 2.6.1 started (bot: google_play_games)
+2022-06-10 17:28:46 [scrapy.utils.log] INFO: Versions: lxml 4.9.0.0, libxml2 2.9.4, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 22.4.0, Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23) - [Clang 13.0.0 (clang-1300.0.29.30)], pyOpenSSL 22.0.0 (OpenSSL 3.0.3 3 May 2022), cryptography 37.0.2, Platform macOS-12.2-arm64-arm-64bit
+2022-06-10 17:28:46 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'google_play_games',
+ 'LOG_FILE': 'google_play.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'google_play_games.spiders',
+ 'SPIDER_MODULES': ['google_play_games.spiders']}
+2022-06-10 17:28:46 [scrapy.extensions.telnet] INFO: Telnet Password: b2b5447a18f2f171
+2022-06-10 17:28:46 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2022-06-10 17:28:47 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'google_play_games.middlewares.selMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2022-06-10 17:28:47 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2022-06-10 17:28:47 [scrapy.middleware] INFO: Enabled item pipelines:
+['google_play_games.pipelines.GooglePlayGamesPipeline',
+ 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb']
+2022-06-10 17:28:47 [scrapy.core.engine] INFO: Spider opened
+2022-06-10 17:28:47 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2022-06-10 17:28:47 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2022-06-10 17:30:41 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2022-06-10 17:30:41 [urllib3.connectionpool] WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10591d7f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/63f4ad782ebddfbaf57495f1f172a88b/element/d753afc2-04e8-4d8b-a484-2c136e64b97c/element
+2022-06-10 17:30:41 [urllib3.connectionpool] WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10637ea00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/63f4ad782ebddfbaf57495f1f172a88b/element/d753afc2-04e8-4d8b-a484-2c136e64b97c/element
+2022-06-10 17:30:41 [urllib3.connectionpool] WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x10637e7f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/63f4ad782ebddfbaf57495f1f172a88b/element/d753afc2-04e8-4d8b-a484-2c136e64b97c/element
+2022-06-10 17:30:41 [scrapy.core.engine] INFO: Closing spider (shutdown)
+2022-06-10 17:30:41 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2022-06-10 17:30:41 [scrapy.core.scraper] ERROR: Error downloading <GET https://play.google.com/store/games?gl=JP>
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/util/connection.py", line 95, in create_connection
+    raise err
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connectionpool.py", line 398, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connection.py", line 239, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 1285, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 1331, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 1280, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 1040, in _send_output
+    self.send(msg)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/http/client.py", line 980, in send
+    self.connect()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x106394130>: Failed to establish a new connection: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/twisted/internet/defer.py", line 1660, in _inlineCallbacks
+    result = current_context.run(gen.send, result)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scrapy/core/downloader/middleware.py", line 41, in process_request
+    response = yield deferred_from_coro(method(request=request, spider=spider))
+  File "/Users/ben/google_play_games/google_play_games/middlewares.py", line 141, in process_request
+    while scroll_right_items[i].find_element_by_xpath("//*[contains(text(), 'chevron_right')]"):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 440, in find_element_by_xpath
+    return self.find_element(by=By.XPATH, value=xpath)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 796, in find_element
+    return self._execute(Command.FIND_CHILD_ELEMENT,
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 773, in _execute
+    return self._parent.execute(command, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 428, in execute
+    response = self.command_executor.execute(driver_command, params)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/remote_connection.py", line 347, in execute
+    return self._request(command_info[0], url, body=data)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/selenium/webdriver/remote/remote_connection.py", line 369, in _request
+    response = self._conn.request(method, url, body=body, headers=headers)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/request.py", line 78, in request
+    return self.request_encode_body(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/request.py", line 170, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/poolmanager.py", line 376, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connectionpool.py", line 813, in urlopen
+    return self.urlopen(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connectionpool.py", line 813, in urlopen
+    return self.urlopen(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connectionpool.py", line 813, in urlopen
+    return self.urlopen(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=50832): Max retries exceeded with url: /session/63f4ad782ebddfbaf57495f1f172a88b/element/d753afc2-04e8-4d8b-a484-2c136e64b97c/element (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x106394130>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2022-06-10 17:30:41 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{'downloader/exception_count': 1,
+ 'downloader/exception_type_count/urllib3.exceptions.MaxRetryError': 1,
+ 'elapsed_time_seconds': 113.986653,
+ 'finish_reason': 'shutdown',
+ 'finish_time': datetime.datetime(2022, 6, 10, 9, 30, 41, 866084),
+ 'log_count/ERROR': 1,
+ 'log_count/INFO': 12,
+ 'log_count/WARNING': 3,
+ 'memusage/max': 74399744,
+ 'memusage/startup': 72941568,
+ 'scheduler/dequeued': 1,
+ 'scheduler/dequeued/memory': 1,
+ 'scheduler/enqueued': 1,
+ 'scheduler/enqueued/memory': 1,
+ 'start_time': datetime.datetime(2022, 6, 10, 9, 28, 47, 879431)}
+2022-06-10 17:30:41 [scrapy.core.engine] INFO: Spider closed (shutdown)
+2022-06-10 17:30:41 [scrapy.core.engine] INFO: Error while scheduling new request
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/twisted/internet/defer.py", line 857, in _runCallbacks
+    current.result = callback(  # type: ignore[misc]
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scrapy/core/engine.py", line 187, in <lambda>
+    d.addBoth(lambda _: self.slot.nextcall.schedule())
+AttributeError: 'NoneType' object has no attribute 'nextcall'
