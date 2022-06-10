@@ -92,8 +92,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
-# REGION = ['JP']
+# REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
+REGION = ['JP']
+GENRE = ['GAME_SIMULATION', '']
 
 LOG_FILE = 'google_play.log'
 LOG_LEVEL = 'INFO'

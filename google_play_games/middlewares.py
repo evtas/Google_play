@@ -123,18 +123,41 @@ class selMiddleware(object):
             self.driver.get(request.url)
             time.sleep(1)
 
+            # 免费，获利最高，热门付费
+            # 第一个操作是这个，如果第一个操作先下滑，这个操作会有bug
+            try:    
+                button_2 = self.driver.find_elements_by_xpath("//div[@class='b6SkTb']/div/div[2]/span[2]")
+                for b in button_2:
+                    b.click()
+                    time.sleep(1)
+            except:
+                pass
+
+            # 下滑
             js = "document.documentElement.scrollTop=20000"
             for i in range(7):
                 self.driver.execute_script(js)
                 time.sleep(1)
+            
+            # 显示更多内容
+            try:
+                button_1 = self.driver.find_element_by_xpath("//*[contains(text(), '显示更多内容')]")
+                button_1.click()
+                
+                js = "document.documentElement.scrollTop=20000"
+                for i in range(3):
+                    self.driver.execute_script(js)
+                    time.sleep(1)
+            except:
+                pass
 
+            # 往右滑
             scroll_right_items = self.driver.find_elements_by_xpath("//div[@class='bewvKb']")
-            # button = self.driver.find_elements_by_xpath("//div[@class='bewvKb']/div[2]")
             print(len(scroll_right_items))
 
             for i in range(len(scroll_right_items)):
                 print(i)
-                if scroll_right_items[i].is_displayed():
+                try:
                     ActionChains(self.driver).move_to_element(scroll_right_items[i]).perform()
                     time.sleep(0.2)
 
@@ -146,6 +169,8 @@ class selMiddleware(object):
                         else:
                             break
                         time.sleep(0.2)
+                except:
+                    pass
             
 
             body = self.driver.page_source

@@ -49,6 +49,7 @@ class GamesCrawlerSpider(scrapy.Spider):
         introduction = response.xpath("//div[@class='bARER']").xpath('string(.)').extract_first()
         update_time = response.xpath("//div[@class='xg1aie']/text()").extract_first()
         genre = response.xpath("//div[@itemprop='genre']/span/text()").extract_first()
+        url = response.url
 
         item['name'] = xstr(name)
         item['author'] = xstr(author)
@@ -58,6 +59,6 @@ class GamesCrawlerSpider(scrapy.Spider):
         item['introduction'] = xstr(introduction)
         item['update_time'] = xstr(update_time)
         item['genre'] = xstr(genre)
+        item['url'] = xstr(url)
 
-        # print(name)
-        return item      
+        
