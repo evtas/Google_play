@@ -15,6 +15,7 @@ class GooglePlayGamesItem(scrapy.Item):
     introduction = scrapy.Field()
     update_time = scrapy.Field()
     genre = scrapy.Field()
+    url = scrapy.Field()
 
 
 

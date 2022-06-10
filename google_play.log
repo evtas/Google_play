@@ -4550,3 +4550,91 @@ Stacktrace:
 2022-06-10 18:56:03 [scrapy.utils.log] INFO: Versions: lxml 4.9.0.0, libxml2 2.9.4, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 22.4.0, Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23) - [Clang 13.0.0 (clang-1300.0.29.30)], pyOpenSSL 22.0.0 (OpenSSL 3.0.3 3 May 2022), cryptography 37.0.2, Platform macOS-12.2-arm64-arm-64bit
 2022-06-10 18:56:32 [scrapy.utils.log] INFO: Scrapy 2.6.1 started (bot: google_play_games)
 2022-06-10 18:56:32 [scrapy.utils.log] INFO: Versions: lxml 4.9.0.0, libxml2 2.9.4, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 22.4.0, Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23) - [Clang 13.0.0 (clang-1300.0.29.30)], pyOpenSSL 22.0.0 (OpenSSL 3.0.3 3 May 2022), cryptography 37.0.2, Platform macOS-12.2-arm64-arm-64bit
+2022-06-10 19:18:00 [scrapy.utils.log] INFO: Scrapy 2.6.1 started (bot: google_play_games)
+2022-06-10 19:18:00 [scrapy.utils.log] INFO: Versions: lxml 4.9.0.0, libxml2 2.9.4, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 22.4.0, Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23) - [Clang 13.0.0 (clang-1300.0.29.30)], pyOpenSSL 22.0.0 (OpenSSL 3.0.3 3 May 2022), cryptography 37.0.2, Platform macOS-12.2-arm64-arm-64bit
+2022-06-10 19:18:00 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'google_play_games',
+ 'LOG_FILE': 'google_play.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'google_play_games.spiders',
+ 'SPIDER_MODULES': ['google_play_games.spiders']}
+2022-06-10 19:18:00 [scrapy.extensions.telnet] INFO: Telnet Password: 733195fe9d2009e3
+2022-06-10 19:18:00 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2022-06-10 19:18:02 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'google_play_games.middlewares.selMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2022-06-10 19:18:02 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2022-06-10 19:18:02 [scrapy.middleware] INFO: Enabled item pipelines:
+['google_play_games.pipelines.GooglePlayGamesPipeline',
+ 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb']
+2022-06-10 19:18:02 [twisted] CRITICAL: Unhandled error in Deferred:
+2022-06-10 19:18:02 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/twisted/internet/defer.py", line 1660, in _inlineCallbacks
+    result = current_context.run(gen.send, result)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scrapy/crawler.py", line 103, in crawl
+    start_requests = iter(self.spider.start_requests())
+TypeError: 'NoneType' object is not iterable
+2022-06-10 19:21:24 [scrapy.utils.log] INFO: Scrapy 2.6.1 started (bot: google_play_games)
+2022-06-10 19:21:24 [scrapy.utils.log] INFO: Versions: lxml 4.9.0.0, libxml2 2.9.4, cssselect 1.1.0, parsel 1.6.0, w3lib 1.22.0, Twisted 22.4.0, Python 3.9.13 (v3.9.13:6de2ca5339, May 17 2022, 11:37:23) - [Clang 13.0.0 (clang-1300.0.29.30)], pyOpenSSL 22.0.0 (OpenSSL 3.0.3 3 May 2022), cryptography 37.0.2, Platform macOS-12.2-arm64-arm-64bit
+2022-06-10 19:21:24 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'google_play_games',
+ 'LOG_FILE': 'google_play.log',
+ 'LOG_LEVEL': 'INFO',
+ 'NEWSPIDER_MODULE': 'google_play_games.spiders',
+ 'SPIDER_MODULES': ['google_play_games.spiders']}
+2022-06-10 19:21:24 [scrapy.extensions.telnet] INFO: Telnet Password: 506b92f334610ce0
+2022-06-10 19:21:24 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.memusage.MemoryUsage',
+ 'scrapy.extensions.logstats.LogStats']
+2022-06-10 19:21:26 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'google_play_games.middlewares.selMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2022-06-10 19:21:26 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2022-06-10 19:21:26 [scrapy.middleware] INFO: Enabled item pipelines:
+['google_play_games.pipelines.GooglePlayGamesPipeline',
+ 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb']
+2022-06-10 19:21:27 [twisted] CRITICAL: Unhandled error in Deferred:
+2022-06-10 19:21:27 [twisted] CRITICAL: 
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/twisted/internet/defer.py", line 1660, in _inlineCallbacks
+    result = current_context.run(gen.send, result)
+  File "/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scrapy/crawler.py", line 103, in crawl
+    start_requests = iter(self.spider.start_requests())
+TypeError: 'NoneType' object is not iterable

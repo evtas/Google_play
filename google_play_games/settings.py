@@ -53,10 +53,11 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-DOWNLOADER_MIDDLEWARES = {
+# 测试暂时关闭
+# DOWNLOADER_MIDDLEWARES = {
    # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
-   'google_play_games.middlewares.selMiddleware': 543,
-}
+   # 'google_play_games.middlewares.selMiddleware': 543,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -66,10 +67,11 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
-   'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
-}
+# 测试暂时关闭
+# ITEM_PIPELINES = {
+   # 'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
+   # 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
