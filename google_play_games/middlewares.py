@@ -14,7 +14,15 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 import time
 from scrapy.http import HtmlResponse
+import random
+from google_play_games.settings import USER_AGENT_LIST
+import psycopg2
 
+
+class RandomUserAgent(object):
+    def process_request(self, request, spider):
+        ua = random.choice(USER_AGENT_LIST)
+        request.headers['User-Agent'] = ua
 
 
 
@@ -178,3 +186,108 @@ class selMiddleware(object):
             print("访问" + request.url)
 
             return HtmlResponse(self.driver.current_url, body=body, encoding='utf-8', request=request)
+
+
+# 被网站ban了
+# class apkMiddleware(object):
+#     def __init__(self):
+#         self.driver = webdriver.Chrome(executable_path='/Users/Ben/chromedriver')
+#         self.driver.maximize_window()
+    
+#     def process_request(self, request, spider):
+#         game_name = request.meta['name']
+#         print(game_name)
+
+#         self.driver.get(request.url)
+#         time.sleep(0.5)
+
+#         # 弹出窗口点击
+#         try:
+#             self.driver.find_element_by_xpath("//*[@id='qc-cmp2-ui']/div[2]/div/button[1]").click()
+#         except:
+#             pass
+        
+#         download_link = ""
+#         # 输入搜索内容  apk_crawl_2
+#         try:
+#             self.driver.find_element_by_name("q").send_keys(game_name)
+#             time.sleep(0.5)
+#             self.driver.find_element_by_xpath("//div[@class='content']/form/button").click()
+#             time.sleep(0.5)
+#             self.driver.find_element_by_xpath("//*[@id='apps']/div/a").click()
+#             # self.driver.find_element_by_xpath("//*[@id='main']/div[1]/div/div[1]/div[3]/a[1]/figure/img")
+#             time.sleep(0.5)
+            
+#             self.driver.find_element_by_xpath("//*[@id='main']/div[1]/div/div[1]/div[2]/div[2]/div/a").click()
+#             time.sleep(0.5)
+#             download_link = self.driver.find_element_by_xpath("//*[@id='best-variant-tab']/div[1]/ul/li/ul/li/a").get_attribute('href')
+#         except:
+#             print('dont have this apk')
+        
+#         print(download_link)
+#         if download_link:
+#             try:
+#                 # 更新apk信息
+#                 conn = psycopg2.connect(database="google_play", user="postgres", password="binshao123", host="127.0.0.1", port="5432")
+#                 cur = conn.cursor()
+#                 cur.execute('update google_play_games set apk = %s where name = %s', (download_link, game_name))
+#                 conn.commit()
+#                 print('update_success')
+#             except:
+#                 print('update_failer')
+
+
+# 用url进行爬取
+class apkMiddleware(object):
+    def __init__(self):
+        self.driver = webdriver.Chrome(executable_path='/Users/Ben/chromedriver')
+        self.driver.maximize_window()
+        self.conn = psycopg2.connect(database="google_play", user="postgres", password="binshao123", host="127.0.0.1", port="5432")
+        self.cur = self.conn.cursor()
+    
+    def process_request(self, request, spider):
+        urls = request.meta['urls']
+        for origin_url in urls:
+            o_url = origin_url[0]
+            url = "https://apkcombo.com/zh/" + origin_url[0][46:]
+            print(url)
+
+            self.driver.get(url)
+            time.sleep(2)
+            
+            download_link = ""
+            # apk_crawl_2
+            try:
+                # 弹窗
+                # self.driver.find_element_by_xpath("//*[@id='qc-cmp2-ui']/div[2]/div/button[1]").click()
+                time.sleep(2)
+
+                a = ""
+                print(1)
+                # self.driver.find_element_by_xpath("//*[@id='main']/div[1]/div/div[1]/div[2]/div[2]/div/a").click()
+                # a = self.driver.find_elements_by_xpath("//*[contains(text(), 'Download APK')]")[0]
+                # a = self.driver.find_element_by_xpath("//div[@class='button-group mb-14']/a[@class='button is-success is-fullwidth']/@href")
+                a = self.driver.find_elements_by_class_name("//div[@class='info']")
+                print(a)    
+                print(2)
+                time.sleep(2)
+                # download_link = self.driver.find_element_by_xpath("//*[@id='best-variant-tab']/div[1]/ul/li/ul/li/a").get_attribute('href')
+                time.sleep(1)
+            except:
+                print('dont have this apk')
+                continue
+
+            
+            print("download_link: ", download_link)
+            if download_link:
+                try:
+                    # 更新apk信息    
+                    self.cur.execute('update google_play_games set apk = %s where url = %s', (download_link, o_url))
+                    self.conn.commit()
+                    print('update_success')
+                except:
+                    print('update_failer')
+
+
+
+
