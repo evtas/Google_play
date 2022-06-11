@@ -13,7 +13,8 @@ import pymongo
 
 class GooglePlayGamesPipeline:
     def __init__(self):
-        self.conn = psycopg2.connect(database='test_database', user='postgres', password='binshao123', host='127.0.0.1', port='5432')
+        # self.conn = psycopg2.connect(database='test_database', user='postgres', password='binshao123', host='127.0.0.1', port='5432')
+        self.conn = psycopg2.connect(database='google_play', user='postgres', password='binshao123', host='127.0.0.1', port='5432')
         self.cur = self.conn.cursor()
         print('connect success')
 
@@ -23,7 +24,7 @@ class GooglePlayGamesPipeline:
             # insert_sql = 'insert into test_table (name, genre, rating_value) values (%s, %s, %s)' % (str(item['name']), str(item['genre']), str(item['rating_value']))
             # self.cur.execute(insert_sql)
             # self.cur.execute('insert into test_table (name, genre, rating_value) values (%s, %s, %s)', (item['name'], item['genre'], item['rating_value']))
-            self.cur.execute('insert into test_table (name, author, star_rating, download_times, content_rating, introduction, update_time, genre) values (%s, %s, %s, %s, %s, %s, %s, %s)', (item['name'], item['author'], item['star_rating'], item['download_times'], item['content_rating'], item['introduction'], item['update_time'], item['genre']))
+            self.cur.execute('insert into google_play_games (name, author, star_rating, download_times, content_rating, introduction, update_time, genre, url) values (%s, %s, %s, %s, %s, %s, %s, %s, %s)', (item['name'], item['author'], item['star_rating'], item['download_times'], item['content_rating'], item['introduction'], item['update_time'], item['genre'], item['url']))
             self.conn.commit()
             print('success')
         except Exception as e:

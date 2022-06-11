@@ -54,10 +54,10 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 # 测试暂时关闭
-# DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
    # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
-   # 'google_play_games.middlewares.selMiddleware': 543,
-# }
+   'google_play_games.middlewares.selMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -68,10 +68,10 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 # 测试暂时关闭
-# ITEM_PIPELINES = {
-   # 'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
-   # 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
-# }
+ITEM_PIPELINES = {
+   'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
+   'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -94,9 +94,8 @@ ROBOTSTXT_OBEY = False
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-# REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
-REGION = ['JP']
-GENRE = ['GAME_SIMULATION', '']
+REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
+# REGION = ['JP']
 
 LOG_FILE = 'google_play.log'
 LOG_LEVEL = 'INFO'

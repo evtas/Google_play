@@ -10,6 +10,10 @@ from google_play_games.settings import REGION
 
 BASE_URL = "https://play.google.com"
 
+count = {}
+for gl in REGION:
+    count[gl] = 0
+
 class GamesCrawlerSpider(scrapy.Spider):
     name = 'games_crawler'
     allowed_domains = ['play.google.com']
@@ -27,14 +31,16 @@ class GamesCrawlerSpider(scrapy.Spider):
             # genre_urls.append(BASE_URL + each.extract())
 
         for genre_url in genre_urls:
-            yield scrapy.Request(genre_url, self.parse_genre)
+            yield scrapy.Request(genre_url, self.parse_genre, meta={'gl':response.meta['gl']})
     
     def parse_genre(self, response):
         for each in response.xpath("//a/@href"):
             detail_url = each.extract()
             # print(each.extract())
             if detail_url[:20] == "/store/apps/details?":
-
+                count[response.meta['gl']] += 1
+                with open("count_1.txt", "w") as f:
+                    f.write(str(count))
                 detail_url = BASE_URL + detail_url
                 yield scrapy.Request(detail_url, self.parse_detail)
 
@@ -60,5 +66,9 @@ class GamesCrawlerSpider(scrapy.Spider):
         item['update_time'] = xstr(update_time)
         item['genre'] = xstr(genre)
         item['url'] = xstr(url)
+
+        return item
+
+
 
         
