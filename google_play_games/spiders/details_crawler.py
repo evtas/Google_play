@@ -54,7 +54,7 @@ class DetailsCrawlerSpider(scrapy.Spider):
             # print(each.extract())
             if detail_url[:20] == "/store/apps/details?":
                 count[response.meta['gl']] += 1
-                with open("count_1.txt", "w") as f:
+                with open("count.txt", "w") as f:
                     f.write(str(count))
                 detail_url = BASE_URL + detail_url
                 yield scrapy.Request(detail_url, self.parse_detail)

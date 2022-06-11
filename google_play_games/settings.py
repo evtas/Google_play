@@ -54,10 +54,10 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 # 测试暂时关闭
-DOWNLOADER_MIDDLEWARES = {
-   # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
-   'google_play_games.middlewares.selMiddleware': 543,
-}
+# DOWNLOADER_MIDDLEWARES = {
+#    # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
+#    'google_play_games.middlewares.selMiddleware': 543,
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

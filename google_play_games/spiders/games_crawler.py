@@ -41,8 +41,8 @@ class GamesCrawlerSpider(scrapy.Spider):
                 count[response.meta['gl']] += 1
                 with open("count_1.txt", "w") as f:
                     f.write(str(count))
-                detail_url = BASE_URL + detail_url
-                yield scrapy.Request(detail_url, self.parse_detail)
+                # detail_url = BASE_URL + detail_url
+                # yield scrapy.Request(detail_url, self.parse_detail)
 
     def parse_detail(self, response):
         item = GooglePlayGamesItem()
