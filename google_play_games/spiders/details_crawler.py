@@ -8,13 +8,15 @@ from .utils import xstr
 
 BASE_URL = "https://play.google.com"
 
-count = {}
-for gl in REGION:
-    count[gl] = 0
+
 
 class DetailsCrawlerSpider(scrapy.Spider):
     name = 'details_crawler'
     allowed_domains = ['play.google.com']
+
+    count = {}
+    for gl in REGION:
+        count[gl] = 0
 
     # 获取游戏详情页url
     conn = psycopg2.connect(database="google_play", user="postgres", password="binshao123", host="127.0.0.1", port="5432")
@@ -24,7 +26,11 @@ class DetailsCrawlerSpider(scrapy.Spider):
     urls = cur.fetchall()
 
     start_urls = []
+    c = 0
     for url in urls:
+        c += 1
+        if c <= 1762:
+            continue
         start_urls.append(url[0])
     
     def parse(self, response):
@@ -44,7 +50,7 @@ class DetailsCrawlerSpider(scrapy.Spider):
                     urls.append(url)
         
         for url in urls:
-            yield scrapy.Request(url, self.parse_detail_genre, meta={'gl':gl})
+            yield scrapy.Request(url, self.parse_detail_genre, meta={'gl':url[-2:]})
     
 
     def parse_detail_genre(self, response):
@@ -53,9 +59,9 @@ class DetailsCrawlerSpider(scrapy.Spider):
             detail_url = each.extract()
             # print(each.extract())
             if detail_url[:20] == "/store/apps/details?":
-                count[response.meta['gl']] += 1
-                with open("count.txt", "w") as f:
-                    f.write(str(count))
+                self.count[response.meta['gl']] += 1
+                with open("details_crawler_second_times.txt", "w") as f:
+                    f.write(str(self.count))
                 detail_url = BASE_URL + detail_url
                 yield scrapy.Request(detail_url, self.parse_detail)
 

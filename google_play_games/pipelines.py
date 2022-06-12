@@ -47,22 +47,5 @@ class GooglePlayGamesPipeline_mongodb:
         self.post.insert_one(game)
         return item
 
-
-class GooglePlayGamesPipeline_apk:
-    def __init__(self):
-        self.conn = psycopg2.connect(database='google_play', user='postgres', password='binshao123', host='127.0.0.1', port='5432')
-        self.cur = self.conn.cursor()
-        print('connect success')
-
-    def process_item(self, item, spider):
-        print(item)
-        try:
-            self.cur.execute('insert into google_play_games (apk) values (%s)', (item['apk']))
-            self.conn.commit()
-            print('success')
-        except Exception as e:
-            print(e)
-            self.conn.rollback()
-            print("failed")
         
         

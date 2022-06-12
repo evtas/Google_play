@@ -101,9 +101,8 @@ ROBOTSTXT_OBEY = False
 # 测试暂时关闭
 DOWNLOADER_MIDDLEWARES = {
 #    # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
-#    'google_play_games.middlewares.selMiddleware': 543,
+   'google_play_games.middlewares.selMiddleware': 543,
       # 'google_play_games.middlewares.RandomUserAgent': 542,
-      'google_play_games.middlewares.apkMiddleware': 543,
 }
 
 # Enable or disable extensions
@@ -118,7 +117,6 @@ DOWNLOADER_MIDDLEWARES = {
 # ITEM_PIPELINES = {
    # 'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
    # 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
-   # 'google_play_games.Pipelines.GooglePlayGamesPipeline_apk': 302,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -143,7 +141,7 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
-# REGION = ['JP']
+# REGION = ['JP', 'US']
 
 LOG_FILE = 'google_play.log'
 LOG_LEVEL = 'INFO'
