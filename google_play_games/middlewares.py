@@ -246,47 +246,44 @@ class apkMiddleware(object):
         self.cur = self.conn.cursor()
     
     def process_request(self, request, spider):
-        urls = request.meta['urls']
-        for origin_url in urls:
-            o_url = origin_url[0]
-            url = "https://apkcombo.com/zh/" + origin_url[0][46:]
-            print(url)
+        origin_url = request.meta['origin_url']
 
-            self.driver.get(url)
-            time.sleep(2)
+        url = request.url
+        print(url)
+
+        self.driver.get(url)
+        time.sleep(10)
             
-            download_link = ""
-            # apk_crawl_2
+        download_link = ""
+        # apk_crawl_2
+        try:
+            # 弹窗
+            self.driver.find_element_by_xpath("//*[@id='qc-cmp2-ui']/div[2]/div/button[1]").click()
+            time.sleep(1)
+
+            print(1)
+            link = self.driver.find_element_by_xpath("//*[@id='main']/div[1]/div/div[1]/div[10]/a")
+            if not link.get_attribute('innerText') == 'Play Store':
+                link.click()
+            print(2)
+            time.sleep(1)
+            download_link = self.driver.find_element_by_xpath("//*[@id='best-variant-tab']/div[1]/ul/li/ul/li/a").get_attribute('href')
+            time.sleep(1)
+        except:
+            print('dont have this apk')
+        finally:
+            self.driver.quit()
+
+        
+        print("download_link: ", download_link)
+        if download_link:
             try:
-                # 弹窗
-                # self.driver.find_element_by_xpath("//*[@id='qc-cmp2-ui']/div[2]/div/button[1]").click()
-                time.sleep(2)
-
-                a = ""
-                print(1)
-                # self.driver.find_element_by_xpath("//*[@id='main']/div[1]/div/div[1]/div[2]/div[2]/div/a").click()
-                # a = self.driver.find_elements_by_xpath("//*[contains(text(), 'Download APK')]")[0]
-                # a = self.driver.find_element_by_xpath("//div[@class='button-group mb-14']/a[@class='button is-success is-fullwidth']/@href")
-                a = self.driver.find_elements_by_class_name("//div[@class='info']")
-                print(a)    
-                print(2)
-                time.sleep(2)
-                # download_link = self.driver.find_element_by_xpath("//*[@id='best-variant-tab']/div[1]/ul/li/ul/li/a").get_attribute('href')
-                time.sleep(1)
+                # 更新apk信息    
+                self.cur.execute('update google_play_games set apk = %s where url = %s', (download_link, origin_url))
+                self.conn.commit()
+                print('update_success')
             except:
-                print('dont have this apk')
-                continue
-
-            
-            print("download_link: ", download_link)
-            if download_link:
-                try:
-                    # 更新apk信息    
-                    self.cur.execute('update google_play_games set apk = %s where url = %s', (download_link, o_url))
-                    self.conn.commit()
-                    print('update_success')
-                except:
-                    print('update_failer')
+                print('update_failer')
 
 
 
