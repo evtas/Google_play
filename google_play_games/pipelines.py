@@ -47,5 +47,26 @@ class GooglePlayGamesPipeline_mongodb:
         self.post.insert_one(game)
         return item
 
+
+class GooglePlayGamesPipeline_image:
+    def __init__(self):
+        # self.conn = psycopg2.connect(database='test_database', user='postgres', password='binshao123', host='127.0.0.1', port='5432')
+        self.conn = psycopg2.connect(database='google_play_games', user='postgres', password='binshao123', host='127.0.0.1', port='5432')
+        self.cur = self.conn.cursor()
+        print('connect success')
+
+    def process_item(self, item, spider):
+        print(item)
+        try:
+            # insert_sql = 'insert into test_table (name, genre, rating_value) values (%s, %s, %s)' % (str(item['name']), str(item['genre']), str(item['rating_value']))
+            # self.cur.execute(insert_sql)
+            # self.cur.execute('insert into test_table (name, genre, rating_value) values (%s, %s, %s)', (item['name'], item['genre'], item['rating_value']))
+            self.cur.execute('insert into games_games (name, author, star_rating, download_times, content_rating, introduction, update_time, image, url, apk) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (item['name'], item['author'], item['star_rating'], item['download_times'], item['content_rating'], item['introduction'], item['update_time'], item['image'], item['url'], ""))
+            self.conn.commit()
+            print('success')
+        except Exception as e:
+            print(e)
+            self.conn.rollback()
+            print("failed")
         
         

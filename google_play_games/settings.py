@@ -99,11 +99,11 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 # 测试暂时关闭
-DOWNLOADER_MIDDLEWARES = {
+# DOWNLOADER_MIDDLEWARES = {
 #    # 'google_play_games.middlewares.GooglePlayGamesDownloaderMiddleware': 543,
-   'google_play_games.middlewares.selMiddleware': 543,
+   # 'google_play_games.middlewares.selMiddleware': 543,
       # 'google_play_games.middlewares.RandomUserAgent': 542,
-}
+# }
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -117,6 +117,7 @@ DOWNLOADER_MIDDLEWARES = {
 # ITEM_PIPELINES = {
    # 'google_play_games.pipelines.GooglePlayGamesPipeline': 300,
    # 'google_play_games.pipelines.GooglePlayGamesPipeline_mongodb': 301,
+   # 'google_play_games.pipelines.GooglePlayGamesPipeline_image': 300,
 # }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -140,10 +141,13 @@ DOWNLOADER_MIDDLEWARES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
+# REGION= ['JP', 'US', 'HK', 'DE', 'EE', 'AU', 'UK']
 # REGION = ['JP', 'US']
+REGION = ['HK']
 
 LOG_FILE = 'google_play.log'
 LOG_LEVEL = 'INFO'
 
 HTTPERROR_ALLOWED_CODES = [403, 503]
+
+DOWNLOAD_FAIL_ON_DATALOSS = False

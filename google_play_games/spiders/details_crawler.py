@@ -26,11 +26,11 @@ class DetailsCrawlerSpider(scrapy.Spider):
     urls = cur.fetchall()
 
     start_urls = []
-    c = 0
+    # c = 0
     for url in urls:
-        c += 1
-        if c <= 1762:
-            continue
+    #     c += 1
+    #     if c != 1:
+    #         break
         start_urls.append(url[0])
     
     def parse(self, response):
@@ -76,7 +76,9 @@ class DetailsCrawlerSpider(scrapy.Spider):
         introduction = response.xpath("//div[@class='bARER']").xpath('string(.)').extract_first()
         update_time = response.xpath("//div[@class='xg1aie']/text()").extract_first()
         genre = response.xpath("//div[@itemprop='genre']/span/text()").extract_first()
+        image = response.xpath("//img[@class='T75of QhHVZd']/@src").extract_first()
         url = response.url
+
 
         item['name'] = xstr(name)
         item['author'] = xstr(author)
@@ -87,6 +89,7 @@ class DetailsCrawlerSpider(scrapy.Spider):
         item['update_time'] = xstr(update_time)
         item['genre'] = xstr(genre)
         item['url'] = xstr(url)
+        item['image'] = xstr(image)
 
         return item
 
